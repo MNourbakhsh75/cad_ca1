@@ -1,7 +1,7 @@
 module log(input[3:0] m , n ,output[7:0] mn,w);
 	
 	assign mn = m * n;
-	assign w = clog2(mn);
+	assign w = $clog2(mn);
 	
 endmodule
 

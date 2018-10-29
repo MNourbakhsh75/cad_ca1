@@ -36,7 +36,7 @@ module matrix_mult #(parameter DW = 8, m = 8 , n = 8)(
 wire [m+n:0] addr1, addr2, addr3;
 wire [1:0] shift_cnt;
 
-
+//(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 6, OUT_DATA = 18)
 datapath mult_dp (
     .data_in(data_in), 
     .clk(clk), 
@@ -59,7 +59,8 @@ datapath mult_dp (
     .data_out(data_out)
     );
 
-controller mult_ctrl (
+//#(parameter m = 8 , n = 8)
+controller #(m,n) mult_ctrl (
     .start(start), 
     .rst(reset), 
     .clk(clk), 
