@@ -30,7 +30,7 @@ module memory #(parameter DW = 8, m = 8 , n = 8) (
 	 (*RAM_STYLE="BLOCK"*)
 
   
-  reg [DW-1:0] mat [m*n-1:0]; // width = DW & height = m*n
+  reg [DW-1:0] mat [m*n-1:0]; // width = DW & height = m*n mehrdad
   
 
   always @(posedge clk)
