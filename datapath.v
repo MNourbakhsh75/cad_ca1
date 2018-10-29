@@ -35,54 +35,54 @@ module datapath #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 6, OUT_DATA = 18) (
 	
 	
 	memory mat1 (
-    .clk(clk), 
-    .readEN(m1rEN), 
-    .writeEN(m1wEN), 
-    .ramEN(m1EN), 
-    .addr(addr1), 
-    .data_in(data_in), 
-    .data_out(out1)
+		.clk(clk), 
+		.readEN(m1rEN), 
+		.writeEN(m1wEN), 
+		.ramEN(m1EN), 
+		.addr(addr1), 
+		.data_in(data_in), 
+		.data_out(out1)
     );
 	
 	memory mat2 (
-    .clk(clk), 
-    .readEN(m2rEN), 
-    .writeEN(m2wEN), 
-    .ramEN(m2EN), 
-    .addr(addr2), 
-    .data_in(data_in), 
-    .data_out(out2)
+		.clk(clk), 
+		.readEN(m2rEN), 
+		.writeEN(m2wEN), 
+		.ramEN(m2EN), 
+		.addr(addr2), 
+		.data_in(data_in), 
+		.data_out(out2)
     );
 
 	
-	 wire [2*DATA_WIDTH+2-1:0] mult_reg_out;
-	 wire [2*DATA_WIDTH+2-1:0] mult_reg_in;
-	 wire [2*DATA_WIDTH+2-1:0] mult_res;
-	 wire [2*DATA_WIDTH+2-1:0] result;
+	wire [2*DATA_WIDTH+2-1:0] mult_reg_out;
+	wire [2*DATA_WIDTH+2-1:0] mult_reg_in;
+	wire [2*DATA_WIDTH+2-1:0] mult_res;
+	wire [2*DATA_WIDTH+2-1:0] result;
 
-	 (*mult_style="block"*)
-	 assign mult_res = out1 * out2;
+	(*mult_style="block"*)
+	assign mult_res = out1 * out2;
 	assign mult_reg_in = mult_reg_out + mult_res;
 		
 	wire ld_rst = rst | mult_rst;
 		
 	register ld_reg(
-    .clk(clk), 
-    .rst(ld_rst), 
-    .ld(mult_ld), 
-    .data_in(mult_reg_in),
-	.data(mult_reg_out)
+		.clk(clk), 
+		.rst(ld_rst), 
+		.ld(mult_ld), 
+		.data_in(mult_reg_in),
+		.data(mult_reg_out)
     );
 
 	
 	memory18 mat3 (
-    .clk(clk), 
-    .readEN(m3rEN), 
-    .writeEN(m3wEN), 
-    .ramEN(m3EN), 
-    .addr(addr3), 
-    .data_in(mult_reg_out), 
-    .data_out(result)
+		.clk(clk), 
+		.readEN(m3rEN), 
+		.writeEN(m3wEN), 
+		.ramEN(m3EN), 
+		.addr(addr3), 
+		.data_in(mult_reg_out), 
+		.data_out(result)
     );
 
 	shifter shift_out (
