@@ -65,8 +65,9 @@ module datapath #(parameter DATA_WIDTH = 8, m = 8, n = 8) (
 	assign mult_reg_in = mult_reg_out + mult_res;
 		
 	wire ld_rst = rst | mult_rst;
-		
-	register ld_reg(
+	parameter regPar = 2*DATA_WIDTH+2;
+
+	register #(regPar) ld_reg (
 		.clk(clk), 
 		.rst(ld_rst), 
 		.ld(mult_ld),

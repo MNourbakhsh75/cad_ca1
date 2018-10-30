@@ -18,19 +18,21 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module register(
+module register #(parameter DW) (
 	input clk,
 	input rst,
 	input ld,
-	input [17:0] data_in,
-	output reg [17:0] data
+	input [DW-1:0] data_in,
+	output reg [DW-1:0] data
 );
 
-   always @(posedge clk)
-      if (rst) begin
-         data <= 17'b0;
-      end else if (ld) begin
-         data <= data_in;
+	always @(posedge clk) begin
+		if(rst) begin
+			data <= {DW{1'd0}};
 		end
+		if (ld) begin
+	    	data <= data_in;
+		end
+	end
 		
 endmodule
