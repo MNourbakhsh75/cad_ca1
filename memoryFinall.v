@@ -23,14 +23,14 @@ module memoryFinall #(parameter DW = 8, m = 8 , n = 8) (
 		input readEN,
 		input writeEN,
 		input ramEN,
-		input [RAM_ADDR_BITS-1:0] addr,
-		input [RAM_WIDTH-1:0] data_in,
-		output reg [RAM_WIDTH-1:0] data_out
+		input [(m + n)-1:0] addr,
+		input [(m + n)-1:0] data_in,
+		output reg [2*DW-1:0] data_out
     );
 	 (*RAM_STYLE="BLOCK"*)
 
   
-   reg [RAM_WIDTH-1:0] mat [(2**RAM_ADDR_BITS)-1:0];
+   reg [2*DW-1:0] mat [m*n-1:0];
   
   always @(posedge clk)
       if (ramEN)
