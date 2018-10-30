@@ -37,23 +37,23 @@ module testBench();
 		.done(Date)
     );
 
-	always #100 clk=~clk;
+	always #10 clk=~clk;
 	
 	initial begin
-		#100 rst = 0;
-		#100 start = 1;
+		#10 rst = 0;
+		#10 start = 1;
 		
-		#200 start = 0; 
+		#20 start = 0; 
 		//first matrix
-		#200 data_in = 8'd1;
-		#200 data_in = 8'd2;
-		#200 data_in = 8'd3;
-		#200 data_in = 8'd4;
+		#20 data_in = 8'd1;
+		#20 data_in = 8'd2;
+		#20 data_in = 8'd3;
+		#20 data_in = 8'd4;
 		//second matrix
-		#200 data_in = 8'd4;
-		#200 data_in = 8'd3;
-		#200 data_in = 8'd2;
-		#200 data_in = 8'd1;
+		#20 data_in = 8'd4;
+		#20 data_in = 8'd3;
+		#20 data_in = 8'd2;
+		#20 data_in = 8'd1;
 		
 		//#200 data_in = 8'd3;
 		//#200 data_in = 8'd1;
@@ -66,7 +66,7 @@ module testBench();
 		//#200 data_in = 8'd2;
 		//#200 data_in = 8'd3;
 		
-		#10000 $stop;
+		#3000 $stop;
 
 	end
 endmodule
