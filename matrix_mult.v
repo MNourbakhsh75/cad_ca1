@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -21,9 +21,9 @@
 module matrix_mult #(parameter DW = 8, m = 8 , n = 8)(
 		input clk,
 		input reset,
-		input [7:0] data_in,
+		input [DW-1:0] data_in,
 		input start,
-		output [7:0] data_out,
+		output [DW-1:0] data_out,
 		output done
     );
 
@@ -37,7 +37,7 @@ wire [m+n:0] addr1, addr2, addr3;
 wire [1:0] shift_cnt;
 
 //(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 6, OUT_DATA = 18)
-datapath mult_dp (
+datapath #(DW,m,n) mult_dp (
     .data_in(data_in), 
     .clk(clk), 
     .rst(reset), 

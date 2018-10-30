@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -29,7 +29,7 @@ module controller #(parameter m = 8 , n = 8)(
 		output reg done
     );
 	 (* FSM_ENCODING="SEQUENTIAL", SAFE_IMPLEMENTATION="NO" *)
-	 
+	
 	parameter sum_MN = m + n - 1;
 	
 	reg [5:0] ps;
@@ -64,7 +64,7 @@ module controller #(parameter m = 8 , n = 8)(
 					m1wEN = 1'b1;
 					addr1 = readi;
 					readi = readi + 1; // I dont know it is true or not !!
-					if(readi >= (m*n)-1 ) begin
+					if(readi >= (m*n) ) begin
 						ps = 6'd2;
 						readi = 8'd0;
 					end
@@ -75,7 +75,7 @@ module controller #(parameter m = 8 , n = 8)(
 					m2wEN = 1'b1;
 					addr2 = readi;
 					readi = readi + 1; 	// I dont know it is true or not !!
-					if(readi >= (m*n)-1 ) begin
+					if(readi >= (m*n) ) begin
 						ps = 6'd3;
 						readi = 8'd0;
 					end

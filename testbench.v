@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -40,8 +40,8 @@ module testBench();
 	always #100 clk=~clk;
 	
 	initial begin
-		#400 rst = 0;
-		#200 start = 1;
+		#100 rst = 0;
+		#100 start = 1;
 		
 		#200 start = 0; 
 		//first matrix
@@ -66,7 +66,7 @@ module testBench();
 		//#200 data_in = 8'd2;
 		//#200 data_in = 8'd3;
 		
-		#10000000 $stop;
+		#10000 $stop;
 
 	end
 endmodule

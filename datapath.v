@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -19,12 +19,12 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-module datapath #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 6, OUT_DATA = 18) (
+module datapath #(parameter DATA_WIDTH = 8, m = 8, n = 8) (
 		input [DATA_WIDTH-1:0] data_in,
 		input clk, rst,
 		input m1EN, m2EN, m3EN, m1rEN, m2rEN, m3rEN, m1wEN, m2wEN, m3wEN,
 		input mult_ld, mult_rst,
-		input [ADDRESS_WIDTH-1:0] addr1, addr2, addr3,
+		input [m+n-1:0] addr1, addr2, addr3,
 		input [1:0] shift_cnt,
 		output [DATA_WIDTH-1:0] data_out
     );
@@ -34,7 +34,7 @@ module datapath #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 6, OUT_DATA = 18) (
 	
 	
 	
-	memory mat1 (
+	memory #(DATA_WIDTH,m,n) mat1 (
 		.clk(clk), 
 		.readEN(m1rEN), 
 		.writeEN(m1wEN), 
@@ -44,7 +44,7 @@ module datapath #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 6, OUT_DATA = 18) (
 		.data_out(out1)
     );
 	
-	memory mat2 (
+	memory #(DATA_WIDTH,n,m) mat2 (
 		.clk(clk), 
 		.readEN(m2rEN), 
 		.writeEN(m2wEN), 
@@ -69,7 +69,7 @@ module datapath #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 6, OUT_DATA = 18) (
 	register ld_reg(
 		.clk(clk), 
 		.rst(ld_rst), 
-		.ld(mult_ld), 
+		.ld(mult_ld),
 		.data_in(mult_reg_in),
 		.data(mult_reg_out)
     );
@@ -85,11 +85,11 @@ module datapath #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 6, OUT_DATA = 18) (
 		.data_out(result)
     );
 
-	shifter shift_out (
-		.data_in(result),
-		.shift_cnt(shift_cnt),
-		.data_out(data_out)
-	);
+	// shifter shift_out (
+	// 	.data_in(result),
+	// 	.shift_cnt(shift_cnt),
+	// 	.data_out(data_out)
+	// );
 /*
 	shift_register shift_reg (
     .clk(clk), 
