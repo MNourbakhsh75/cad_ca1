@@ -1,4 +1,4 @@
-//`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 module ATB;
 	reg clk = 1;
 	reg rst = 1;

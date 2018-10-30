@@ -75,8 +75,8 @@ module datapath #(parameter DATA_WIDTH = 8, m = 8, n = 8) (
 		.data(mult_reg_out)
     );
 
-	
-	memory18 mat3 (
+
+	memoryFinall #(DATA_WIDTH,n,m) mat3 (
 		.clk(clk), 
 		.readEN(m3rEN), 
 		.writeEN(m3wEN), 
