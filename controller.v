@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+//`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -64,7 +64,7 @@ module controller #(parameter m = 8 , n = 8)(
 					m1wEN = 1'b1;
 					addr1 = readi;
 					readi = readi + 1; // I dont know it is true or not !!
-					if(readi >= (m*n)-1 ) begin
+					if(readi > (m*n)-1 ) begin
 						ps = 6'd2;
 						readi = 8'd0;
 					end
@@ -75,7 +75,7 @@ module controller #(parameter m = 8 , n = 8)(
 					m2wEN = 1'b1;
 					addr2 = readi;
 					readi = readi + 1; 	// I dont know it is true or not !!
-					if(readi >= (m*n)-1 ) begin
+					if(readi > (m*n)-1 ) begin
 						ps = 6'd3;
 						readi = 8'd0;
 					end
@@ -109,9 +109,9 @@ module controller #(parameter m = 8 , n = 8)(
 					mult_rst = 1'b1;
 					m3EN = 1;
 					m3wEN = 1;
-					addr3 = (3 * i) + j;						
+					addr3 = (n * i) + j;						
 					j = j + 1;
-					if(j > m-1) begin
+					if(j > n-1) begin
 						i = i + 1;
 						ps = 6'd6;
 						j = {sum_MN{1'd0}};
@@ -122,7 +122,7 @@ module controller #(parameter m = 8 , n = 8)(
 				end
 				
 				6: begin
-					if(i > (n*n) -1) begin
+					if(i > n-1) begin
 						ps = 6'd7;
 					end
 					else begin
