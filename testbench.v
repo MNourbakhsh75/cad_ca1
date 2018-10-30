@@ -50,10 +50,10 @@ module testBench();
 		#20 data_in = 8'd3;
 		#20 data_in = 8'd4;
 		//second matrix
-		#20 data_in = 8'd4;
-		#20 data_in = 8'd3;
-		#20 data_in = 8'd2;
-		#20 data_in = 8'd1;
+		#20 data_in = 8'd5;
+		#20 data_in = 8'd6;
+		#20 data_in = 8'd7;
+		#20 data_in = 8'd8;
 		
 		//#200 data_in = 8'd3;
 		//#200 data_in = 8'd1;

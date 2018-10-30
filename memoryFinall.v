@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module memory18 #(parameter RAM_WIDTH = 18, RAM_ADDR_BITS = 8) (
+module memoryFinall #(parameter DW = 8, m = 8 , n = 8) (
 		input clk,
 		input readEN,
 		input writeEN,
