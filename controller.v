@@ -25,7 +25,7 @@ module controller #(parameter m = 8 , n = 8)(
 		output reg mult_ld,
 		output reg [1:0] shift_cnt,
 		output reg mult_rst,
-		output reg [7:0] addr1, addr2, addr3,
+		output reg [(m + n)-1:0] addr1, addr2, addr3,
 		output reg done
     );
 	 (* FSM_ENCODING="SEQUENTIAL", SAFE_IMPLEMENTATION="NO" *)
@@ -82,10 +82,10 @@ module controller #(parameter m = 8 , n = 8)(
 				end
 					
 				3: begin
-					//addr1 = (n * i) + k;
-					//addr2 = j + (m * k);
-					addr1 = (m * i) + k;
-					addr2 = (n * k) + j;
+					addr1 = (n * i) + k;
+					addr2 = j + (m * k);
+					// addr1 = (m * i) + k;
+					// addr2 = (n * k) + j;
 					m1rEN = 1'b1;
 					m2rEN = 1'b1;
 					m1EN = 1'b1;
@@ -96,7 +96,7 @@ module controller #(parameter m = 8 , n = 8)(
 				
 				4: begin
 					mult_ld = 1'b1;
-					if(k > m -1) begin
+					if(k > n-1) begin
 						ps = 6'd5;
 						k = {sum_MN{1'd0}};
 					end
@@ -109,9 +109,9 @@ module controller #(parameter m = 8 , n = 8)(
 					mult_rst = 1'b1;
 					m3EN = 1;
 					m3wEN = 1;
-					addr3 = (n * i) + j;						
+					addr3 = (m * i) + j;						
 					j = j + 1;
-					if(j > n-1) begin
+					if(j > m-1) begin
 						i = i + 1;
 						ps = 6'd6;
 						j = {sum_MN{1'd0}};
@@ -122,7 +122,7 @@ module controller #(parameter m = 8 , n = 8)(
 				end
 				
 				6: begin
-					if(i > n-1) begin
+					if(i > m-1) begin
 						ps = 6'd7;
 					end
 					else begin

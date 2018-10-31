@@ -27,13 +27,7 @@ module matrix_mult #(parameter DW = 8, m = 8 , n = 8)(
 		output done
     );
 
-// parameter addrNum = $clog2(m*n); //$
-// wire [addrNum:0] addr1, addr2, addr3; // m+n $ add addrNum
-// wire [1:0] shift_cnt;
-
-
-
-wire [m+n:0] addr1, addr2, addr3;
+wire [(m+n)-1:0] addr1, addr2, addr3;
 wire [1:0] shift_cnt;
 
 //(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 6, OUT_DATA = 18)

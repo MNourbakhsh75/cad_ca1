@@ -24,7 +24,7 @@ module memoryFinall #(parameter DW = 8, m = 8 , n = 8) (
 		input writeEN,
 		input ramEN,
 		input [(m + n)-1:0] addr,
-		input [(m + n)-1:0] data_in,
+		input [2*DW-1:0] data_in,
 		output reg [2*DW-1:0] data_out
     );
 	 (*RAM_STYLE="BLOCK"*)

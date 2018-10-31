@@ -24,7 +24,7 @@ module datapath #(parameter DATA_WIDTH = 8, m = 8, n = 8) (
 		input clk, rst,
 		input m1EN, m2EN, m3EN, m1rEN, m2rEN, m3rEN, m1wEN, m2wEN, m3wEN,
 		input mult_ld, mult_rst,
-		input [m+n-1:0] addr1, addr2, addr3,
+		input [(m+n)-1:0] addr1, addr2, addr3,
 		input [1:0] shift_cnt,
 		output [DATA_WIDTH-1:0] data_out
     );
@@ -75,8 +75,8 @@ module datapath #(parameter DATA_WIDTH = 8, m = 8, n = 8) (
 		.data(mult_reg_out)
     );
 
-    memoryFinall #(DATA_WIDTH,n,n) mat3 (
-		.clk(clk), 
+    memoryFinall #(DATA_WIDTH,m,m) mat3 (
+		.clk(clk),
 		.readEN(m3rEN), 
 		.writeEN(m3wEN), 
 		.ramEN(m3EN), 
@@ -84,19 +84,5 @@ module datapath #(parameter DATA_WIDTH = 8, m = 8, n = 8) (
 		.data_in(mult_reg_out), 
 		.data_out(result)
     );
-	// shifter shift_out (
-	// 	.data_in(result),
-	// 	.shift_cnt(shift_cnt),
-	// 	.data_out(data_out)
-	// );
-/*
-	shift_register shift_reg (
-    .clk(clk), 
-    .rst(rst), 
-    .shr(shr), 
-    .ld(shift_ld), 
-    .reg_in(result), 
-    .reg_out(shift_reg_out)
-    );
-*/
+
 endmodule

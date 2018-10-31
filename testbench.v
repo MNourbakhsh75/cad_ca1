@@ -28,7 +28,7 @@ module testBench();
 	wire done; 
 	
 	//parameter DW = 8, m = 8 , n = 8)
-	matrix_mult #(8, 2 , 2) UUT (
+	matrix_mult #(8, 3 , 4) UUT (
 		.clk(clk),
 		.reset(rst),
 		.data_in(data_in),
@@ -45,28 +45,36 @@ module testBench();
 		
 		#20 start = 0; 
 		//first matrix
+		#20 data_in = 8'd0;
 		#20 data_in = 8'd1;
 		#20 data_in = 8'd2;
 		#20 data_in = 8'd3;
 		#20 data_in = 8'd4;
-		//second matrix
 		#20 data_in = 8'd5;
 		#20 data_in = 8'd6;
 		#20 data_in = 8'd7;
 		#20 data_in = 8'd8;
+		#20 data_in = 8'd9;
+		#20 data_in = 8'd10;
+		#20 data_in = 8'd11;
+
+		//second matrix
+		#20 data_in = 8'd0;
+		#20 data_in = 8'd1;
+		#20 data_in = 8'd2;
+		#20 data_in = 8'd3;
+		#20 data_in = 8'd4;
+		#20 data_in = 8'd5;
+		#20 data_in = 8'd6;
+		#20 data_in = 8'd7;
+		#20 data_in = 8'd8;
+		#20 data_in = 8'd9;
+		#20 data_in = 8'd10;
+		#20 data_in = 8'd11;
+
+
 		
-		//#200 data_in = 8'd3;
-		//#200 data_in = 8'd1;
-		//#200 data_in = 8'd2;
-		//#200 data_in = 8'd3;
-		//#200 data_in = 8'd1;
-		//#200 data_in = 8'd2;
-		//#200 data_in = 8'd3;
-		//#200 data_in = 8'd1;
-		//#200 data_in = 8'd2;
-		//#200 data_in = 8'd3;
-		
-		#3000 $stop;
+		#300000 $stop;
 
 	end
 endmodule
