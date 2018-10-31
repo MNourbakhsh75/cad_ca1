@@ -18,13 +18,15 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module register #(parameter DW) (
+module register #(parameter DW = 8) (
 	input clk,
 	input rst,
 	input ld,
 	input [DW-1:0] data_in,
 	output reg [DW-1:0] data
 );
+	(*RAM_STYLE="BLOCK"*)
+
 
 	always @(posedge clk) begin
 		if(rst) begin

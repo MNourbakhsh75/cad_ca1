@@ -55,14 +55,15 @@ module datapath #(parameter DATA_WIDTH = 8, m = 8, n = 8) (
     );
 
 	
-	wire [2*DATA_WIDTH+2-1:0] mult_reg_out;
-	wire [2*DATA_WIDTH+2-1:0] mult_reg_in;
-	wire [2*DATA_WIDTH+2-1:0] mult_res;
-	wire [2*DATA_WIDTH+2-1:0] result;
+	wire [2*DATA_WIDTH-1:0] mult_reg_out;
+	wire [2*DATA_WIDTH-1:0] mult_reg_in;
+	wire [2*DATA_WIDTH-1:0] mult_res;
+	wire [2*DATA_WIDTH-1:0] result;
+    wire overFlow;
 
 	(*mult_style="block"*)
 	assign mult_res = out1 * out2;
-	assign mult_reg_in = mult_reg_out + mult_res;
+	assign {overFlow,mult_reg_in} = mult_reg_out + mult_res;
 		
 	wire ld_rst = rst | mult_rst;
 	parameter regPar = 2*DATA_WIDTH+2;

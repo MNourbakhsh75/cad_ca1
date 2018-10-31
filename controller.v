@@ -131,7 +131,6 @@ module controller #(parameter m = 8 , n = 8)(
 				end
 					
 				7: begin
-					shift_cnt = 0;
 					addr3 = outi;
 					m3EN = 1;
 					m3rEN = 1;
@@ -139,17 +138,14 @@ module controller #(parameter m = 8 , n = 8)(
 				end
 					
 				8: begin
-					if(outi >= 8'd9) begin
+					if(outi >= m*m) begin
 						done = 0;
-						ps = 6'd9;
+						//ps = 6'd9;
 					end
 					else begin
 						done = 1;
-						shift_cnt = shift_cnt + 1;
-						if(shift_cnt >= 2'd2) begin
-							outi = outi + 1;
-							ps = 6'd7;
-						end
+						outi = outi + 1;
+						ps = 6'd7;
 					end
 				end
 
